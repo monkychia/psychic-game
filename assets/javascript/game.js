@@ -1,4 +1,4 @@
-var totalCount = 9;  // user has total of 12 plays
+var totalCount = 9;  // user has total of 9 plays
 var wins = 0;
 var losses = 0;
 var guessesSoFar = '';
