@@ -1,4 +1,4 @@
-var totalCount = 12;  // user has total of 12 plays if they loss
+var totalCount = 9;  // user has total of 12 plays
 var wins = 0;
 var losses = 0;
 var guessesSoFar = '';
@@ -10,19 +10,27 @@ document.onkeypress = function(event) {
     if (totalCount > 0) {
         if (userGuess === computerGuess) {
             wins++;
+            //reset
             computerGuess = randomChoice();
+            userGuess = '';
+            totalCount = 9;
+            guessesSoFar = '';
         } else {
-            if (totalCount < 12) {
-                guessesSoFar =  guessesSoFar + ",";
-            }
-            losses++;
             totalCount--;
-            guessesSoFar = guessesSoFar + " " + userGuess;
+            if (totalCount === 0) {
+                losses++;
+                //reset
+                computerGuess = randomChoice();
+                userGuess = '';
+                totalCount = 9;
+                guessesSoFar = '';
+            }
         }
-    } else {
-        alert("Game Over!  Computer was thinking: " + computerGuess);
-    }
-    
+        if (totalCount < 8) {
+            guessesSoFar = guessesSoFar + ",";
+        }
+    } 
+    guessesSoFar = guessesSoFar + " " + userGuess;
     results(wins, losses, totalCount, guessesSoFar);
 };
 
@@ -41,6 +49,7 @@ function randomChoice() {
     var choice = letters[Math.floor(Math.random() * letters.length)];
     return choice;
 }
+
 
 
 
